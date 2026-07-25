@@ -1,0 +1,280 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #e9f2ff;
+    margin: 0;
+    padding: 20px;
+}
+
+.contenedor-principal {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: #c7dfff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+h2 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* ======================================================================= */
+/* 🛠️ CORRECCIÓN DE LA CLASE .MODAL (Compatibilidad total con Bootstrap)  */
+/* ======================================================================= */
+.modal {
+    /* Quitamos el display:none, el position y el background oscurecido manual */
+    /* Dejamos que Bootstrap maneje su comportamiento nativo y añadimos seguridad */
+    pointer-events: auto !important;
+    z-index: 1060 !important;
+}
+
+/* Fuerza a que el fondo oscuro de Bootstrap no se quede congelado bloqueando clics */
+.modal-backdrop {
+    pointer-events: none !important;
+    z-index: 1050 !important;
+}
+
+/* Si Bootstrap por error duplica fondos oscuros, ocultamos los extras */
+.modal-backdrop + .modal-backdrop {
+    display: none !important;
+}
+
+/* Fuerza a que el cuerpo recupere el scroll y no se congele */
+body.modal-open {
+    overflow: auto !important;
+    padding-right: 0 !important;
+}
+
+/* Caja blanca del formulario (Tu diseño original personalizado) */
+.modal-contenido {
+    background-color: white;
+    padding: 25px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+/* Botón de cerrar (X) */
+.cerrar {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #aaa;
+}
+.cerrar:hover { color: black; }
+
+/* Organización de los campos del formulario */
+.campo {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+.campo label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+.campo input, .campo textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: inherit;
+}
+
+/* Fondo de la pantalla lila muy clarito */
+.fondo-lila {
+    background-color: #f3ebf9 !important;
+}
+
+/* Color lila principal para el título */
+.texto-lila {
+    color: #8e44ad !important;
+}
+
+/* Botón lila con su estado Hover */
+.btn-lila {
+    background-color: #9b59b6 !important;
+    color: white !important;
+    border: none !important;
+}
+
+.btn-lila:hover {
+    background-color: #8e44ad !important;
+    color: white !important;
+}
+
+/* Suavizar los placeholders */
+.input-lila::placeholder {
+    color: #ccc !important;
+    opacity: 0.7 !important;
+}
+
+/* Color del enlace */
+.enlace-lila {
+    color: #9b59b6 !important;
+}
+
+/* Botón de agregar (+): Bordes punteados en el tono rosa */
+.btn-outline-lila {
+    color: #ff6b90;
+    background-color: transparent;
+    border: 2px dashed #ff6b90;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-outline-lila:hover {
+    color: #ffffff;
+    background-color: #ff6b90;
+    border-color: #ff6b90;
+}
+
+/* Botones dinámicos de las notas guardadas con el rosa del calendario */
+.btn-lista-bloque {
+    background-color: #ff6b90;
+    color: white;
+    border: none;
+    transition: transform 0.2s, background-color 0.2s;
+    word-wrap: break-word; /* Evita que títulos largos rompan el cuadro */
+}
+
+.btn-lista-bloque:hover {
+    /* Un tono de rosa un poco más oscuro al pasar el cursor para dar efecto de click */
+    background-color: #e04d70; 
+    transform: translateY(-3px); /* Efecto flotante */
+    color: white;
+}
+
+        :root {
+            --morado-principal: #9A58B5;
+            --blanco-lavanda: #F3EEF7;
+            --gris-pizarra: #5D6D7E;
+        }
+
+        body {
+            font-family: 'Wix Madefor Display', sans-serif;
+            color: var(--gris-pizarra);
+            margin: 0;
+            padding: 0;
+            background-color: var(--blanco-lavanda);
+        }
+
+        /* Contenedor principal que ocupa toda la pantalla */
+        .main-container {
+            min-height: 100vh;
+        }
+
+        /* Columna Izquierda (Fondo Morado) */
+        .izquierda {
+            background-color: var(--morado-principal);
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 5rem 4rem; /* Mayor espaciado interno */
+            text-align: center;
+        }
+
+        /* Aumento del tamaño del logo (De 180px a 240px) */
+        .logo-placeholder {
+            width: 240px;
+            height: 240px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border: 3px dashed #ffffff; /* Borde un poco más grueso */
+            border-radius: 16px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 2.5rem;
+        }
+
+        /* Título de la app más grande (De 2.5rem a 3.8rem) */
+        .izquierda h1 {
+            font-weight: 700;
+            font-size: 3.8rem;
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+        }
+
+        /* Subtítulo de la izquierda (De 1.2rem a 1.6rem) */
+        .izquierda h2 {
+            font-size: 1.6rem;
+            font-weight: 400;
+            max-width: 85%;
+            opacity: 0.95;
+            line-height: 1.4;
+        }
+
+        /* Botones de Iniciar Sesión y Registrarse más grandes y robustos */
+        .btn-custom-outline {
+            border: 2.5px solid #ffffff;
+            color: #ffffff;
+            background: transparent;
+            font-weight: 700;
+            font-size: 1.25rem; /* Texto de botón más grande */
+            padding: 1rem 2.5rem; /* Mayor relleno interno */
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-custom-outline:hover {
+            background-color: #ffffff;
+            color: var(--morado-principal);
+            transform: translateY(-2px); /* Pequeño efecto visual al pasar el cursor */
+        }
+
+        /* Columna Derecha (Fondo Blanco/Lavanda) */
+        .derecha {
+            background-color: var(--blanco-lavanda);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 6rem; /* Incremento de padding para dar aire a textos grandes */
+        }
+
+        /* Título principal derecho (De 2.2rem a 3.2rem) */
+        .derecha h2 {
+            font-weight: 700;
+            color: var(--morado-principal);
+            font-size: 3.2rem;
+            margin-bottom: 2rem;
+            line-height: 1.2;
+        }
+
+        /* Párrafos e información general (De 1.1rem a 1.35rem) */
+        .derecha p {
+            font-size: 1.35rem;
+            line-height: 1.7;
+            margin-bottom: 1.8rem;
+        }
+
+        /* Párrafo destacado inicial (De 1.25rem a 1.6rem) */
+        .derecha .lead {
+            font-size: 1.6rem;
+            font-weight: 400;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .destacado {
+            font-weight: 700;
+            color: var(--morado-principal);
+        }
+
+        /* Ajuste responsivo para pantallas pequeñas */
+        @media (max-width: 768px) {
+            .main-container {
+                flex-direction: column-reverse;
+            }
+            .izquierda, .derecha {
+                padding: 4rem 2rem;
+            }
+            .izquierda h1 { font-size: 3rem; }
+            .izquierda h2 { font-size: 1.3rem; }
+            .derecha h2 { font-size: 2.4rem; }
+            .derecha p { font-size: 1.2rem; }
+        }
