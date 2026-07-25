@@ -210,5 +210,6 @@ app.add_url_rule('/listas', 'listas', listas)
 app.add_url_rule('/api/login', 'procesar_login', procesar_login, methods=['POST'])
 app.add_url_rule('/api/registro', 'procesar_registro', procesar_registro, methods=['POST'])
 
-app.run(host='0.0.0.0', debug=True)
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', debug=True)
 
