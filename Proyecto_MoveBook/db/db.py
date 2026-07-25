@@ -1,8 +1,13 @@
 import sqlite3
+import os
 
-#INIT DE LAS BASES DE DATOS
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+DB_PATH = os.path.join(BASE_DIR, 'db', 'database.db')
+
+
+# INIT DE LAS BASES DE DATOS
 def init_db():
-    with sqlite3.connect('db/database.db') as conn:
+    with sqlite3.connect(DB_PATH) as conn:
         cursor = conn.cursor()
         cursor.execute('PRAGMA foreign_keys = ON;')
         cursor.execute('''
@@ -38,31 +43,31 @@ def init_db():
         conn.commit()
 
 
-#LOGIN Y REGISTRO
+# LOGIN Y REGISTRO
 def agregar_usuario(usuario, contrasena):
-    with sqlite3.connect('db/database.db') as conn:
+    with sqlite3.connect(DB_PATH) as conn:
         cursor = conn.cursor()
         cursor.execute('INSERT INTO usuarios (usuario, contrasena) VALUES (?, ?)', (usuario, contrasena))
         conn.commit()
 
 def verificar_usuario(usuario, contrasena):
-    with sqlite3.connect('db/database.db') as conn:
+    with sqlite3.connect(DB_PATH) as conn:
         cursor = conn.cursor()
         cursor.execute('SELECT id_usuario, usuario FROM usuarios WHERE usuario = ? AND contrasena = ?', (usuario, contrasena))
-        fila= cursor.fetchone()
+        fila = cursor.fetchone()
         return fila
     
 def existe_usuario(usuario):
-    with sqlite3.connect('db/database.db') as conn:
+    with sqlite3.connect(DB_PATH) as conn:
         cursor = conn.cursor()
         cursor.execute('SELECT * FROM usuarios WHERE usuario = ?', (usuario,))
         return cursor.fetchone() is not None
     
 
-#CALENDARIO
+# CALENDARIO
 def agregar_tarea(titulo, categoria, inicio, fin, color_fondo, id_usuario):
     """Corregido para coincidir con las columnas reales de la tabla tareas"""
-    with sqlite3.connect('db/database.db') as conn:
+    with sqlite3.connect(DB_PATH) as conn:
         cursor = conn.cursor()
         cursor.execute('''
             INSERT INTO tareas (titulo, categoria, inicio, fin, color_fondo, id_usuario) 
@@ -71,7 +76,7 @@ def agregar_tarea(titulo, categoria, inicio, fin, color_fondo, id_usuario):
         conn.commit()
 
 def obtener_tareas(id_usuario):
-    with sqlite3.connect('db/database.db') as conn:
+    with sqlite3.connect(DB_PATH) as conn:
         conn.row_factory = sqlite3.Row 
         cursor = conn.cursor()
         cursor.execute('SELECT id_tarea, titulo, categoria, inicio, fin, color_fondo FROM tareas WHERE id_usuario = ?', (id_usuario,))
@@ -90,13 +95,13 @@ def obtener_tareas(id_usuario):
         return tareas
     
 def eliminar_tarea(id_tarea):
-    with sqlite3.connect('db/database.db') as conn:
+    with sqlite3.connect(DB_PATH) as conn:
         cursor = conn.cursor()
         cursor.execute('DELETE FROM tareas WHERE id_tarea = ?', (id_tarea,))
         conn.commit()
 
 def modificar_tarea(id_tarea, nuevo_titulo, nueva_categoria, nuevo_inicio, nuevo_fin, nuevo_color):
-    with sqlite3.connect('db/database.db') as conn:
+    with sqlite3.connect(DB_PATH) as conn:
         cursor = conn.cursor()
         cursor.execute('''
             UPDATE tareas 
@@ -106,27 +111,27 @@ def modificar_tarea(id_tarea, nuevo_titulo, nueva_categoria, nuevo_inicio, nuevo
         conn.commit()
 
 
-#LISTAS
+# LISTAS
 def agregar_lista(nombre, texto, usuario):
-    with sqlite3.connect('db/database.db') as conn:
+    with sqlite3.connect(DB_PATH) as conn:
         cursor = conn.cursor()
         cursor.execute('INSERT INTO listas (nombre, texto, usuario) VALUES (?, ?, ?)', (nombre, texto, usuario))
         conn.commit()
 
 def obtener_lista(usuario):
-    with sqlite3.connect('db/database.db') as conn:
+    with sqlite3.connect(DB_PATH) as conn:
         cursor = conn.cursor()
         cursor.execute('SELECT id_lista, nombre FROM listas WHERE usuario = ?', (usuario,))
         return cursor.fetchall()
     
 def eliminar_lista(lista_id):
-    with sqlite3.connect('db/database.db') as conn:
+    with sqlite3.connect(DB_PATH) as conn:
         cursor = conn.cursor()
         cursor.execute('DELETE FROM listas WHERE id_lista = ?', (lista_id,))
         conn.commit()
 
 def modificar_lista(lista_id, nuevo_nombre, nuevo_texto):
-    with sqlite3.connect('db/database.db') as conn:
+    with sqlite3.connect(DB_PATH) as conn:
         cursor = conn.cursor()
         cursor.execute('UPDATE listas SET nombre = ?, texto = ? WHERE id_lista = ?', (nuevo_nombre, nuevo_texto, lista_id))
         conn.commit()
